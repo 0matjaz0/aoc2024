@@ -1,6 +1,6 @@
 def kos_root():
-    """Return the pathname of the ."""
-    1
+    """Historian Hysteria."""
+    
 
 
 if __name__ == "__main__":
