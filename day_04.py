@@ -54,8 +54,7 @@ def first_puzzle(filename):
 if __name__ == "__main__":
     result = first_puzzle("day_04_input_test.txt")
     print(result)
-
-#    result = first_puzzle("day_04_input_a.txt")
-#  print(result)
+    result = first_puzzle("day_04_input_a.txt")
+    print(result)
 
 ############################################
