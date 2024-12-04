@@ -22,7 +22,6 @@ def first_puzzle(filename):
         table.append(letters)
     maxx, maxy = len(table[0]), len(table)
     m_table = table[::-1]  # mirror table
-    #    print(maxx, maxy)
     diagonals = []
     m_diagonals = []
     for i in range(maxx + maxy - 1):
@@ -43,18 +42,55 @@ def first_puzzle(filename):
     total += count_xmas(row_strings)
     column_strings = ["".join(column) for column in zip(*table)]
     total += count_xmas(column_strings)
-
     return total
 
 
-#    for i in range(len(diagonals)):
-#        print(diagonals[i])
+def check_corners(i, j, table):
+    maxx, maxy = len(table[0]), len(table)
+    corners = [
+        table[i - 1][j - 1],
+        table[i - 1][j + 1],
+        table[i + 1][j - 1],
+        table[i + 1][j + 1],
+    ]
+    return bool(
+        corners
+        in [
+            ["M", "S", "M", "S"],
+            ["S", "M", "S", "M"],
+            ["M", "M", "S", "S"],
+            ["S", "S", "M", "M"],
+        ]
+    )
+
+
+def second_puzzle(filename):
+    """Ceres Search part 2"""
+    total = 0
+    with open(filename, "r") as f:
+        data = f.readlines()
+    table = []
+    for line in data:
+        line = line.strip()
+        letters = list(line)
+        table.append(letters)
+    maxx, maxy = len(table[0]), len(table)
+    for i, row in enumerate(table):
+        for j, element in enumerate(row):
+            if 0 < i < maxx - 1 and 0 < j < maxy - 1 and element == "A":
+                if check_corners(i, j, table):
+                    total += 1
+    return total
 
 
 if __name__ == "__main__":
     result = first_puzzle("day_04_input_test.txt")
     print(result)
     result = first_puzzle("day_04_input_a.txt")
+    print(result)
+    result = second_puzzle("day_04_input_test.txt")
+    print(result)
+    result = second_puzzle("day_04_input_a.txt")
     print(result)
 
 ############################################
