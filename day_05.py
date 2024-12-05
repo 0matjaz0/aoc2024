@@ -1,13 +1,37 @@
-"""AOC 2024 day 4"""
+"""AOC 2024 day 5"""
+
+
+def read_and_parse(filename):
+    """Read and parse the input file"""
+    with open(filename, "r") as f:
+        data = f.readlines()
+    rules, prints = [], []
+    for line in data:
+        line = line.strip()
+        if "|" in line:
+            numbers = line.split("|")
+            numbers = [int(num) for num in numbers]
+            rules.append(numbers)
+        elif "," in line:
+            numbers = line.split(",")
+            numbers = [int(num) for num in numbers]
+            prints.append(numbers)
+    return rules, prints
+
+
+def check_print(rules, print):
+    """Check if the print is valid"""
+    for index, page in enumerate(print):
+        # do something
+    return False
+
 
 
 def first_puzzle(filename):
-    """Ceres Search part 1"""
-    with open(filename, "r") as f:
-        data = f.readlines()
-    table = []
-    for line in data:
-        pass
+    """Print Queue part 1"""
+    rules, prints = read_and_parse(filename)
+    print(rules)
+    print(prints)
     return 0
 
 
